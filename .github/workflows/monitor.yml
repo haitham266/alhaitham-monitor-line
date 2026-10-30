@@ -1,0 +1,60 @@
+name: مراقبة خطوط شبكة الهيثم
+
+on:
+  schedule:
+    - cron: "7 * * * *"      # فحص كل ساعة
+    - cron: "55 20 * * *"    # 11:55 مساءً بتوقيت اليمن = التقرير اليومي
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "check أو report"
+        default: "check"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitor
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: تحديد نوع التشغيل
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ github.event.inputs.mode }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.schedule }}" = "55 20 * * *" ]; then
+            echo "mode=report" >> $GITHUB_OUTPUT
+          else
+            echo "mode=check" >> $GITHUB_OUTPUT
+          fi
+
+      - name: فحص الخطوط
+        env:
+          LINES_JSON: ${{ secrets.LINES_JSON }}
+          DASH_PASSWORD: ${{ secrets.DASH_PASSWORD }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          LOW_LIMIT_GB: ${{ vars.LOW_LIMIT_GB || '100' }}
+        run: python monitor.py ${{ steps.mode.outputs.mode }}
+
+      - name: حفظ البيانات المشفرة
+        run: |
+          git config user.name "monitor-bot"
+          git config user.email "monitor-bot@users.noreply.github.com"
+          git add data.enc
+          git diff --cached --quiet || git commit -m "تحديث البيانات $(TZ=Asia/Aden date '+%Y-%m-%d %H:%M')"
+          git push
