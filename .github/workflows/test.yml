@@ -1,0 +1,11 @@
+name: اختبار الاتصال
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in https://adsl.yemen.net.ye/login http://adsl.yemen.net.ye/login https://www.yemen.net.ye https://www.google.com; do
+            echo "== $u"
+            curl -s -o /dev/null -w "OK %{http_code} in %{time_total}s\n" -m 20 "$u" || echo "FAILED (blocked)"
+          done
