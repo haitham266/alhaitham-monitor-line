@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b5cad">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>خطوط شبكة الهيثم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f5f9; --card:#fff; --ink:#0f172a; --muted:#64748b; --line:#e2e8f0;
+  --brand:#0b5cad; --ok:#16a34a; --okbg:#ecfdf3; --bad:#dc2626; --badbg:#fef2f2; --warn:#d97706;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#0b1220; --card:#121b2e; --ink:#e5e9f2; --muted:#94a3b8; --line:#1f2a40;
+        --brand:#5aa2f0; --okbg:#0f2a1c; --badbg:#2e1215;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Tajawal,system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+h1{font-size:20px;margin:0;font-weight:800}
+.sub{color:var(--muted);font-size:13px}
+button{font-family:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:7px 12px;font-size:14px}
+.btn-primary{background:var(--brand);color:#fff;border:none;font-weight:700}
+.total{background:linear-gradient(135deg,#0b5cad,#0e7ad1);color:#fff;border-radius:18px;padding:20px;margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.total .lbl{opacity:.85;font-size:13px}
+.total .big{font-size:34px;font-weight:800;line-height:1.1}
+.total .mid{font-size:22px;font-weight:700}
+.total.alert{background:linear-gradient(135deg,#b91c1c,#dc2626)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;position:relative;overflow:hidden}
+.card.low{border:2px solid var(--bad);background:var(--badbg);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.35)}50%{box-shadow:0 0 0 8px rgba(220,38,38,0)}}
+.card h2{margin:0 0 2px;font-size:17px}
+.phone{color:var(--muted);font-size:13px;direction:ltr;text-align:right}
+.bal{font-size:32px;font-weight:800;margin:10px 0 2px}
+.card.low .bal{color:var(--bad)}
+.unit{font-size:15px;font-weight:500;color:var(--muted)}
+.badge{position:absolute;top:14px;left:14px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--okbg);color:var(--ok)}
+.card.low .badge{background:var(--bad);color:#fff}
+.card.err .badge{background:#fff7ed;color:var(--warn)}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:13px;margin-top:10px}
+.meta dt{color:var(--muted)} .meta dd{margin:0}
+.bar{height:6px;border-radius:9px;background:var(--line);margin-top:8px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--ok)}
+.card.low .bar>i{background:var(--bad)}
+.errmsg{font-size:12px;color:var(--warn);margin-top:8px}
+section.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:16px}
+section.panel h3{margin:0 0 10px;font-size:16px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}
+th{color:var(--muted);font-weight:500}
+.tblwrap{overflow-x:auto}
+.chart{display:flex;align-items:flex-end;gap:4px;height:140px;padding-top:8px}
+.chart .col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:0}
+.chart .col i{display:block;width:100%;background:var(--brand);border-radius:5px 5px 0 0;min-height:2px}
+.chart .col span{font-size:10px;color:var(--muted);margin-top:3px}
+.chart .col b{font-size:10px;font-weight:500}
+#lock{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+#lock form{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;width:100%;max-width:340px;text-align:center}
+#lock input[type=password]{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:16px;text-align:center;margin:12px 0}
+#lock label{font-size:13px;color:var(--muted)}
+.hidden{display:none!important}
+.lockerr{color:var(--bad);font-size:13px;min-height:18px}
+</style>
+</head>
+<body>
+
+<div id="lock">
+  <form id="lockform">
+    <h1>🔒 خطوط شبكة الهيثم</h1>
+    <input type="password" id="pw" placeholder="كلمة سر اللوحة" autocomplete="current-password" autofocus>
+    <label><input type="checkbox" id="remember" checked> تذكّرني على هذا الجهاز</label>
+    <div class="lockerr" id="lockerr"></div>
+    <button class="btn-primary" style="width:100%;padding:11px">دخول</button>
+  </form>
+</div>
+
+<div id="app" class="wrap hidden">
+  <header>
+    <div>
+      <h1>📡 خطوط شبكة الهيثم</h1>
+      <div class="sub" id="updated"></div>
+    </div>
+    <div style="display:flex;gap:6px">
+      <button id="refresh" title="تحديث">↻</button>
+      <button id="logout" title="خروج">خروج</button>
+    </div>
+  </header>
+
+  <div class="total" id="total"></div>
+  <div class="grid" id="cards"></div>
+
+  <section class="panel">
+    <h3>📉 الاستهلاك اليومي (آخر 14 يوم)</h3>
+    <div class="chart" id="chart"></div>
+  </section>
+
+  <section class="panel">
+    <h3>🗓 سجل الأيام</h3>
+    <div class="tblwrap"><table id="hist"></table></div>
+  </section>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const fmt = x => (x == null || isNaN(x)) ? "—" : Number(x).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const store = {
+  get(k){ try{ return localStorage.getItem(k) }catch(e){ return null } },
+  set(k,v){ try{ localStorage.setItem(k,v) }catch(e){} },
+  del(k){ try{ localStorage.removeItem(k) }catch(e){} }
+};
+let PASS = null, DATA = null;
+
+async function decrypt(blob, pass){
+  const salt = b64(blob.salt), iv = b64(blob.iv), ct = b64(blob.ct);
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({name:"PBKDF2", salt, iterations: blob.iter || 200000, hash:"SHA-256"},
+                base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv}, key, ct);
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
+async function load(pass){
+  const r = await fetch("data.enc?t=" + Date.now(), {cache:"no-store"});
+  if(!r.ok) throw new Error("nodata");
+  return decrypt(await r.json(), pass);
+}
+
+function ago(ts){
+  const m = Math.round((Date.now()/1000 - ts)/60);
+  if(m < 1) return "الآن";
+  if(m < 60) return `قبل ${m} دقيقة`;
+  const h = Math.floor(m/60);
+  return h < 24 ? `قبل ${h} ساعة` : `قبل ${Math.floor(h/24)} يوم`;
+}
+function dateAr(ts){
+  return new Date(ts*1000).toLocaleString("ar-YE",{timeZone:"Asia/Aden",dateStyle:"medium",timeStyle:"short"});
+}
+
+// استهلاك اليوم الحالي من القراءات
+function todayUsage(snaps){
+  const now = new Date(new Date().toLocaleString("en-US",{timeZone:"Asia/Aden"}));
+  const sinceMidnight = now.getHours()*3600 + now.getMinutes()*60 + now.getSeconds();
+  const t0 = Math.floor(Date.now()/1000) - sinceMidnight;
+  const before = snaps.filter(s => s[0] < t0), inside = snaps.filter(s => s[0] >= t0);
+  const seq = (before.length ? [before[before.length-1]] : []).concat(inside);
+  let used = 0;
+  for(let i=1;i<seq.length;i++){ const a=seq[i-1][1], b=seq[i][1]; if(a!=null && b!=null && b<a) used += a-b; }
+  return used;
+}
+
+function render(){
+  const d = DATA, low = d.low_limit || 100;
+  const names = d.order || Object.keys(d.lines);
+  $("#updated").textContent = d.updated ? `آخر فحص: ${dateAr(d.updated)} (${ago(d.updated)})` : "";
+
+  let total = 0, todayTotal = 0, lowCount = 0;
+  const cards = names.map(n => {
+    const L = d.lines[n] || {}; const bal = L.balance;
+    total += bal || 0;
+    const tu = todayUsage(L.snaps || []); todayTotal += tu;
+    const isLow = bal != null && bal < low; if(isLow) lowCount++;
+    const max = Math.max(...(L.snaps||[]).map(s=>s[1]||0), bal||0, low*2);
+    const cls = isLow ? "low" : (L.ok === false ? "err" : "");
+    const badge = isLow ? "⚠ اشحن الآن" : (L.ok === false ? "فشل آخر فحص" : "سليم");
+    return `<div class="card ${cls}">
+      <span class="badge">${badge}</span>
+      <h2>${n}</h2>
+      <div class="phone">${L.phone || ""}</div>
+      <div class="bal">${fmt(bal)} <span class="unit">جيجا</span></div>
+      <div class="bar"><i style="width:${Math.min(100,(bal||0)/max*100)}%"></i></div>
+      <dl class="meta">
+        <dt>استهلاك اليوم</dt><dd>${fmt(tu)} جيجا</dd>
+        <dt>الباقة</dt><dd>${L.package || "—"}</dd>
+        <dt>الحالة</dt><dd>${L.status || "—"}</dd>
+        <dt>الانتهاء</dt><dd>${L.expiry || "—"}</dd>
+        <dt>آخر فحص</dt><dd>${L.checked ? ago(L.checked) : "—"}</dd>
+      </dl>
+      ${L.ok === false && L.error ? `<div class="errmsg">${L.error.replace(/</g,"&lt;")}</div>` : ""}
+    </div>`;
+  });
+  $("#cards").innerHTML = cards.join("");
+
+  const tot = $("#total");
+  tot.classList.toggle("alert", lowCount > 0);
+  tot.innerHTML = `
+    <div><div class="lbl">إجمالي المتبقي (${names.length} خطوط)</div><div class="big">${fmt(total)} <span style="font-size:16px">جيجا</span></div></div>
+    <div><div class="lbl">استهلاك اليوم حتى الآن</div><div class="mid">${fmt(todayTotal)} جيجا</div>
+      <div class="lbl" style="margin-top:6px">${lowCount ? `⚠ ${lowCount} خط تحت ${low} جيجا` : "✓ كل الخطوط فوق " + low + " جيجا"}</div></div>`;
+
+  const days = (d.daily || []).slice(-14);
+  const mx = Math.max(1, ...days.map(x => x.total_used || 0));
+  $("#chart").innerHTML = days.length ? days.map(x => `<div class="col" title="${x.date}: ${fmt(x.total_used)} جيجا">
+      <b>${Math.round(x.total_used)}</b><i style="height:${(x.total_used||0)/mx*100}%"></i><span>${x.date.slice(5).replace("-","/")}</span></div>`).join("")
+    : `<div class="sub">يظهر هنا بعد أول تقرير يومي.</div>`;
+
+  const hist = (d.daily || []).slice().reverse();
+  $("#hist").innerHTML = `<tr><th>اليوم</th>${names.map(n=>`<th>${n}</th>`).join("")}<th>المجموع</th></tr>` +
+    (hist.length ? hist.map(x => `<tr><td>${x.date}</td>${names.map(n => `<td>${fmt(x.lines?.[n]?.used)}</td>`).join("")}<td><b>${fmt(x.total_used)}</b></td></tr>`).join("")
+     : `<tr><td colspan="${names.length+2}" class="sub">لا يوجد سجل بعد</td></tr>`);
+}
+
+async function unlock(pass, remember){
+  DATA = await load(pass);
+  PASS = pass;
+  if(remember) store.set("hm_pw", pass);
+  $("#lock").classList.add("hidden");
+  $("#app").classList.remove("hidden");
+  render();
+}
+
+$("#lockform").addEventListener("submit", async e => {
+  e.preventDefault();
+  $("#lockerr").textContent = "جاري فك التشفير…";
+  try{ await unlock($("#pw").value, $("#remember").checked); }
+  catch(err){ $("#lockerr").textContent = err.message === "nodata" ? "لا توجد بيانات بعد — انتظر أول فحص." : "كلمة السر غير صحيحة"; }
+});
+$("#logout").onclick = () => { store.del("hm_pw"); location.reload(); };
+$("#refresh").onclick = async () => { try{ DATA = await load(PASS); render(); }catch(e){} };
+setInterval(async () => { if(PASS){ try{ DATA = await load(PASS); render(); }catch(e){} } }, 5*60*1000);
+
+const saved = store.get("hm_pw");
+if(saved) unlock(saved, true).catch(() => store.del("hm_pw"));
+</script>
+</body>
+</html>
