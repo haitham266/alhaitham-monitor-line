@@ -25,6 +25,13 @@ from zoneinfo import ZoneInfo
 
 import requests
 from bs4 import BeautifulSoup
+
+# استخدام مخزن شهادات النظام (ويندوز) مثل كروم، لأنه يكمل سلسلة الشهادات الناقصة
+try:
+    import truststore
+    truststore.inject_into_ssl()
+except Exception:
+    pass
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
