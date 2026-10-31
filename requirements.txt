@@ -2,3 +2,5 @@ requests>=2.31
 beautifulsoup4>=4.12
 cryptography>=42
 ddddocr>=1.5.5
+tzdata
+truststore>=0.9
